@@ -3,12 +3,12 @@ node {
     def rtGradle = Artifactory.newGradleBuild()
     def buildInfo = Artifactory.newBuildInfo()
     stage 'Build'
-        git url: 'https://github.com/wardviaene/gs-gradle.git'
+        git url: 'https://github.com/Jasvinder-aulakh/gs-gradle.git'
 
     stage 'Artifactory configuration'
         rtGradle.tool = 'gradle' // Tool name from Jenkins configuration
-        rtGradle.deployer repo:'gradle-dev-local',  server: server
-        rtGradle.resolver repo:'gradle-dev', server: server
+        rtGradle.deployer repo:'gradle-libs-cache',  server: server
+        rtGradle.resolver repo:'gradle-plugin-cache', server: server
 
         stage('Config Build Info') {
             buildInfo.env.capture = true
